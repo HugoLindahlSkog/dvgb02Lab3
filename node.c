@@ -2,6 +2,8 @@
 #define MAX_NODES 4
 
 void rtinit(struct distance_table *table, int node) {
+	
+
 	// Tables are already initialized
 	struct rtpkt pkt;
 	pkt.sourceid = node;
@@ -17,6 +19,15 @@ void rtinit(struct distance_table *table, int node) {
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+	for(int i = 0; i < MAX_NODES; i++){
+		if (is_neighbor(node, i)) {
+			table->costs[i][node] = get_link_cost(node, i);
+		}
+	}
+
+>>>>>>> Stashed changes
 	printdt(table, node);
 }
 
