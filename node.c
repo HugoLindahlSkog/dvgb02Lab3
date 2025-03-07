@@ -10,10 +10,10 @@ void rtinit(struct distance_table *table, int node) {
 		}
 	}
 
-	for(int i = TABLESIZE; i = 0; i++){
+	for(int i = 0; i < TABLESIZE; i++){
 		//Check if nod is neighbour and set distances
 		if(is_neighbor(node, i)){
-			table->costs[i][i] = get_link_cost(node, i);
+			table->costs[i][node] = table->costs[node][i];
 		}
 	}
 	//for sending routingupdates to neigbours
