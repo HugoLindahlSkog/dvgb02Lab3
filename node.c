@@ -12,17 +12,28 @@ void rtinit(struct distance_table *table, int node) {
 
 	for(int i = TABLESIZE; i = 0; i++){
 		//Check if nod is neighbour and set distances
-		if(is_neighbour(node, i)){
+		if(is_neighbor(node, i)){
 			table->costs[i][i] = get_link_cost(node, i);
 		}
 	}
-
+	//for sending routingupdates to neigbours
 	struct rtpkt packet;
-	packet.sourceid = node;
+	packet.sourceid = node; //node that sends
+	
+	//if the costs are less than inf than then value is new
 	for(int dest = 0; dest < TABLESIZE; dest++){
 		packet.mincost[dest] = INF;
-		for(int via = 0; i < TABLESIZE; via++){
-			
+		for(int via = 0; via < TABLESIZE; via++){
+			if(table->costs[dest][via] < packet.mincost[dest]){
+				packet.mincost[dest] = table->costs[dest][via];
+			}
+		}
+	}
+
+	for(int i = 0; i < TABLESIZE; i++){
+		if(is_neighbor(node, i)){
+			packet.destid = i;
+			tolayer2(packet);
 		}
 	}
 	printdt(table, node);
