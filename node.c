@@ -2,6 +2,17 @@
 #define MAX_NODES 4
 
 void rtinit(struct distance_table *table, int node) {
+<<<<<<< Updated upstream
+=======
+	/*Fill table with INF with table pointer to distancetable struct, so the table will
+	be filled with 999 meaning we have no clue of distances between nodes yet*/
+	/*for(int i = 0; i < TABLESIZE; i++){
+		for(int j = 0; j < TABLESIZE; j ++){
+			table->costs[i][j] = INF; 
+		}
+	}*/
+
+>>>>>>> Stashed changes
 	
 
 	// Tables are already initialized
@@ -11,6 +22,14 @@ void rtinit(struct distance_table *table, int node) {
     for(int i = 0; i < MAX_NODES; i++){
 		pkt.mincost[i] = table->costs[i][node];
 	}
+<<<<<<< Updated upstream
+=======
+	
+	//for sending routingupdates to neigbours
+	struct rtpkt packet;
+	
+	packet.sourceid = node; //node that sends
+>>>>>>> Stashed changes
 	
 	for(int i = 0; i < MAX_NODES; i++){
 		if(is_neighbor(node, i)){
@@ -32,6 +51,7 @@ void rtinit(struct distance_table *table, int node) {
 }
 
 void rtupdate(struct distance_table *table, int node, struct rtpkt *pkt) {
+<<<<<<< Updated upstream
 	int source = pkt->sourceid;
 	int updated = 0;
 
@@ -57,6 +77,8 @@ void rtupdate(struct distance_table *table, int node, struct rtpkt *pkt) {
 		}
 	}
 
+=======
+>>>>>>> Stashed changes
 	//printdt(table, node);
 }
 
